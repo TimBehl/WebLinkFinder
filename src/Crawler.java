@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,6 +26,15 @@ public class Crawler implements VisitAction {
 			toVisit.remove(currentURL);
 			beenVisit.add(currentURL);
 			visitMethodHolder.action(currentURL);
+		}
+	}
+	
+	public void showVisited(){
+		int urlCount = 0;
+		Iterator<URL> visitIter = beenVisit.iterator();
+		while(visitIter.hasNext()){
+			urlCount++;
+			System.out.println("URL #" + urlCount + ": " + visitIter.next().toString());
 		}
 	}
 
