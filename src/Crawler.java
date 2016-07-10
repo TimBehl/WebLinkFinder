@@ -48,8 +48,11 @@ public class Crawler implements VisitAction {
 				Pattern p = Pattern.compile(pattern);
 				Matcher m = p.matcher(strLine);
 				if(m.matches()){
-					toVisit.add(new URL(URLtoVisit.getProtocol() + "://" + URLtoVisit.getHost() 
-							+ strLine));
+					URL toAdd = new URL(URLtoVisit.getProtocol() + "://" + URLtoVisit.getHost() 
+							+ strLine);
+					if(!toVisit.contains(toAdd) && !beenVisit.contains(toAdd)){
+						toVisit.add(toAdd);
+					}
 				}
 			}
 		} catch (IOException e) {
